@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICODEBASE", "APICODEBASE\APICODEBASE.csproj", "{553EE871-5FE8-474A-8809-0C6BB6124A55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{553EE871-5FE8-474A-8809-0C6BB6124A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553EE871-5FE8-474A-8809-0C6BB6124A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553EE871-5FE8-474A-8809-0C6BB6124A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553EE871-5FE8-474A-8809-0C6BB6124A55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32EA9C41-4C0A-44E2-849E-3D61BDCF958F}
+	EndGlobalSection
+EndGlobal
