@@ -1,0 +1,69 @@
+<div class="container">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="title">Registration</div>
+  <div class="content">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details" for="firstName">First Name</span>
+          <input type="text" id="firstName" formControlName="firstName" placeholder="Enter your First name"  required/>
+          <div *ngIf="isFieldInvalid('firstName')" class="error-message">First Name is required.</div>
+        </div>
+        
+        <div class="input-box">
+          <span class="details">Last name</span>
+          <input type="text" id="lastName" formControlName="lastName" placeholder="Enter your Last username"  required/>
+          <div *ngIf="isFieldInvalid('lastName')" class="error-message">Last Name is required.</div>
+        </div>
+        <div class="input-box">
+          <span class="details">Email</span>
+          <input type="email" id="email" formControlName="email" placeholder="Enter your email"  required/>
+          <div *ngIf="isFieldInvalid('email')" class="error-message">Enter a valid email address.</div>
+        </div>
+        <div class="input-box">
+          <span class="details">Password</span>
+          <input type="password" id="password"   formControlName="password"  placeholder="Enter your password"  required/>
+          <div *ngIf="isFieldInvalid('password')" class="error-message">Password is required and must be at least 6 characters.</div>
+        </div>
+        <div class="input-box">
+          <span class="details">Confirm Password</span>
+          <input type="password" id="confirmPassword" formControlname="confirmPassword" placeholder="Confirm your password"  required/>
+          <div *ngIf="isFieldInvalid('confirmPassword')" class="error-message">Passwords do not match.</div>
+        </div>
+        <div class="input-box">
+          <span class="details">Phone Number</span>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" placeholder="Enter Phone Number"   required/>
+          <div *ngIf="isFieldInvalid('phoneNumber')" class="error-message">Phone Number is required.</div>
+        </div>  
+        <div class="input-box">
+          <span class="details">Street</span>
+          <input type="text" id="street" formControlName="street"  placeholder="Enter your street"  required/>
+          <div *ngIf="isFieldInvalid('street')" class="error-message">Street is required.</div>
+        </div> 
+        <div class="input-box">
+          <span class="details">City</span>
+          <input type="text"  id="city" formControlName="city" placeholder="Enter your City" required/>
+          <div *ngIf="isFieldInvalid('city')" class="error-message">City is required.</div>
+        </div>      
+        <div class="input-box">
+          <span class="details">State</span>
+          <input type="text" id="state" formControlName="state" placeholder="Enter your State"  required/>
+          <div *ngIf="isFieldInvalid('state')" class="error-message">State is required.</div>
+        </div> 
+        <div class="input-box">
+          <span class="details">Country</span>
+          <input type="text" id="country" formControlName="country" placeholder="Enter your Country"  required/>
+          <div *ngIf="isFieldInvalid('country')" class="error-message">Country is required.</div>
+        </div> 
+        <div class="input-box">
+          <span class="details">Zip Code</span>
+          <input type="text" id="pinCode" formControlName="pinCode" placeholder="Enter your PinCode"  required/>
+          <div *ngIf="isFieldInvalid('pinCode')" class="error-message">Zip Code is required.</div>
+        </div> 
+      </div>
+      <div class="button">
+        <input type="submit"  value="Register" [disabled]="!registrationForm.valid"/>
+     </div>
+    </div>
+    </form>
+  </div>
+  

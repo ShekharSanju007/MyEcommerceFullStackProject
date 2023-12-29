@@ -1,0 +1,20 @@
+
+ <mat-toolbar class="navStyle" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+    <span>
+      <button mat-button><b>HIPSTER WORLD</b></button>
+      <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    </span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <button mat-button routerLink="/login">
+        <mat-icon>power_settings_new</mat-icon>
+        Login
+      </button>
+      <button mat-button routerLink="/register">
+        <mat-icon>account_circle</mat-icon>
+        Register
+      </button>
+     
+    </div>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
