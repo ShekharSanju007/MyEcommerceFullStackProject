@@ -15,23 +15,8 @@ export class AdminRegisterComponent {
 
 
   ngOnInit() {
-
-    this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
-      pinCode: ['', Validators.required],
-    }, {
-      validators: this.passwordMatchValidator // Custom validator function
-    });  
-   
+   this.registrationFormData();
+    
 }
 
 passwordMatchValidator(formGroup: FormGroup) {
@@ -53,9 +38,29 @@ isFieldInvalid(fieldName: string): boolean {
 
 
 
-onSubmit() {
+registrationFormData(){
 
-  if (this.registrationForm.valid) {
+  this.registrationForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', Validators.required],
+    phoneNumber: ['', Validators.required],
+    street: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    country: ['', Validators.required],
+    pinCode: ['', Validators.required],
+  }, {
+    validators: this.passwordMatchValidator // Custom validator function
+  });  
+ 
+}
+
+public onSubmit():void {
+
+ 
     this.dataService.postData(this.registrationForm.value).subscribe(
       (response) => {
         console.log('Post success:', response);
@@ -65,16 +70,16 @@ onSubmit() {
       }
     );
   
-    this.dataService.getData().subscribe(
-      (data) => {
-        console.log('Get success:', data);
+    // this.dataService.getData().subscribe(
+    //   (data) => {
+    //     console.log('Get success:', data);
         
-      },
-      (error) => {
-        console.error('Get error:', error);
+    //   },
+    //   (error) => {
+    //     console.error('Get error:', error);
         
-      }
-    );
+    //   }
+    // );
 
 
     // // Assuming you want to update data using PUT
@@ -108,14 +113,10 @@ onSubmit() {
   
     
   
+
+
+
 }
-
-
-}
-
-
-
-
 
 
 

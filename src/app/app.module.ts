@@ -7,7 +7,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule ,NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -18,6 +18,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { DatafetchService } from './datafetch.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import { MatOptionModule } from '@angular/material/core';
     AdminRegisterComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
   BrowserModule,
   AppRoutingModule,
   FlexLayoutModule,
@@ -41,10 +46,11 @@ import { MatOptionModule } from '@angular/material/core';
   MatTableModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  HttpClientModule
   
   ],
-  providers: [],
+  providers: [DatafetchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

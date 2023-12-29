@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DatafetchService {
-  private apiUrl = 'http://localhost:5022/api';
+  private apiUrl = 'http://localhost:5022/api/Admin';
 
   constructor(public http:HttpClient) { }
 
@@ -16,8 +16,9 @@ getData():Observable<any> {
 
 }
 
-postData(data:any){
-  return this.http.post("$this.apiUrl/admin",data);
+
+postData(data:any):Observable<any>{
+  return this.http.post('http://localhost:5022/api/Admin',data);
 }
 
 
