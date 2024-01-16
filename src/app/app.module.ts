@@ -19,7 +19,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { DatafetchService } from './datafetch.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
+import { TokenInterceptor } from './interceptor/token.interceptor';
 
 
 
@@ -27,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     AdminLoginComponent,
-    AdminRegisterComponent
+    AdminRegisterComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -50,7 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
   HttpClientModule
   
   ],
-  providers: [DatafetchService],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

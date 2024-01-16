@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatafetchService } from '../datafetch.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,7 +13,8 @@ import { DatafetchService } from '../datafetch.service';
 export class AdminRegisterComponent {
  
   registrationForm!: FormGroup;
-    constructor(private fb: FormBuilder,private dataService: DatafetchService) { }
+  registererrorMessage!:any;
+    constructor(private fb: FormBuilder,private dataService: DatafetchService,private router:Router) { }
 
 
   ngOnInit() {
@@ -53,71 +56,32 @@ registrationFormData(){
     country: ['', Validators.required],
     pinCode: ['', Validators.required],
   }, {
-    validators: this.passwordMatchValidator // Custom validator function
+    validators: this.passwordMatchValidator.bind(this) // Custom validator function
   });  
  
 }
 
-public onSubmit():void {
+ onSubmit() {
 
  
-    this.dataService.postData(this.registrationForm.value).subscribe(
+    this.dataService.RegisterData(this.registrationForm?.value).subscribe(
       (response) => {
         console.log('Post success:', response);
+        this.registrationForm.reset();
+        this.router.navigate(['/login']);
+
       },
+      
       (error) => {
+        if(error.error.message=='Email already exists')
+        {
+          this.registererrorMessage = true;
+        }
         console.error('Post error:', error);
       }
     );
-  
-    // this.dataService.getData().subscribe(
-    //   (data) => {
-    //     console.log('Get success:', data);
-        
-    //   },
-    //   (error) => {
-    //     console.error('Get error:', error);
-        
-    //   }
-    // );
-
-
-    // // Assuming you want to update data using PUT
-    // this.dataService.putData(this.registrationForm.value).subscribe(
-    //   (response) => {
-    //     console.log('Put success:', response);
-    //     // Optionally, handle success response
-    //   },
-    //   (error) => {
-    //     console.error('Put error:', error);
-    //     // Optionally, handle error
-    //   }
-    // );
-  
-
- 
-    // // Assuming you want to delete data using DELETE
-    // this.dataService.deleteData(id).subscribe(
-    //   (response) => {
-    //     console.log('Delete success:', response);
-    //     // Optionally, handle success response
-    //   },
-    //   (error) => {
-    //     console.error('Delete error:', error);
-    //     // Optionally, handle error
-    //   }
-    // );
-  
-
-  // You can also fetch data using GET if needed
-  
-    
-  
-
-
 
 }
-
 
 
 }

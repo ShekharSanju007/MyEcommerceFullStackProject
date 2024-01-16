@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
+import { DatafetchService } from './datafetch.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngularUI';
+  constructor(public dataService: DatafetchService) {}
+
+  LogOut() {
+    this.dataService.signOut();
+  }
 }

@@ -92,3 +92,16 @@ body{
     margin-top: 5px;
 
   }
+
+
+  .forget {
+    min-width: 100px;
+  margin-left: auto;
+  text-decoration: none;
+  cursor: pointer;  
+ 
+ }
+
+a:hover {
+ text-decoration: none;
+}

@@ -2,18 +2,25 @@
  <mat-toolbar class="navStyle" color="primary" fxLayout="row" fxLayoutAlign="space-between center">
     <span>
       <button mat-button><b>HIPSTER WORLD</b></button>
-      <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+      <button mat-button routerLink="/home"><mat-icon>home</mat-icon></button>
     </span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+      <ng-container *ngIf="!dataService.isLoggedIn(); else logoutButton">
       <button mat-button routerLink="/login">
         <mat-icon>power_settings_new</mat-icon>
         Login
       </button>
-      <button mat-button routerLink="/register">
+      <!-- <button mat-button routerLink="/register">
         <mat-icon>account_circle</mat-icon>
         Register
+      </button> -->
+    </ng-container>
+    <ng-template #logoutButton>
+      <button mat-button *ngIf="dataService.isLoggedIn()" (click)="LogOut()">
+        <mat-icon>account_circle</mat-icon>
+        {{ (dataService.logOut$ | async) ? 'Login' : 'Logout' }}
       </button>
-     
+    </ng-template>
     </div>
   </mat-toolbar>
 
