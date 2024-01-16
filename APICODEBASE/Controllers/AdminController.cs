@@ -1,7 +1,15 @@
 ﻿using APICODEBASE.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using BCrypt.Net;
+using System.IdentityModel.Tokens.Jwt;
+using System;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APICODEBASE.Controllers
 {
@@ -18,13 +26,18 @@ namespace APICODEBASE.Controllers
             _context=context;
         }
 
+     
+        [Authorize]
         [HttpGet]
 
-        public IActionResult Get()
+        public async Task<ActionResult<Admin>>  Get()
         {
 
             try {
-                var AdminData = _context.Admin.ToList();
+
+
+
+                var AdminData = await _context.Admin.ToListAsync();
 
                 if (AdminData.Count==0)
                 {
@@ -69,26 +82,77 @@ namespace APICODEBASE.Controllers
 
         }
 
-
         [HttpPost]
-        public IActionResult Post(Admin admin)
+        [Route("Register")]
+        public async Task<ActionResult> Register(Admin admin)
         {
-
             try
             {
-                _context.Add(admin);
-                _context.SaveChanges();
+                if (admin == null)
+                {
+                    return BadRequest("Invalid Admin data");
+                }
 
-                return Ok("Admin Created");
+                if (_context.Admin.Any(a => a.email == admin.email))
+                {
+                    return Conflict(new { message = "Email already exists" });
+                }
 
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(admin.password);
+                admin.password = hashedPassword;
+
+               _context.Admin.Add(admin);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "User registered successfully" });
             }
 
+            catch (DbUpdateException ex)
+            {
+               
+                return Conflict(new { message = "User registration failed due to a database conflict: {ex.Message}" });
+            }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-
         }
+
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult> Login(Admin admin)
+        {
+            try
+            {
+                var loginData = await _context.Admin.FirstOrDefaultAsync(a => a.email == admin.email);
+
+
+                if (loginData == null || !BCrypt.Net.BCrypt.Verify(admin.password, loginData.password))
+                {
+                    return Unauthorized(new { message = "Invalid email or password" });
+                }
+
+               
+                loginData.JwtToken = CreateJwtToken(loginData);
+                await _context.SaveChangesAsync();
+
+                return Ok(new     
+               {
+
+                    Token = loginData.JwtToken,
+                    message = "Login details are successful" });
+                
+               }
+
+           catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
 
         [HttpPut]
         public IActionResult Put(Admin admin)
@@ -168,6 +232,35 @@ namespace APICODEBASE.Controllers
             }
 
         }
+
+
+
+        private string CreateJwtToken(Admin admin)
+       {
+
+            var key = Encoding.ASCII.GetBytes("veryverysecretkeyjwtbdfsgthsfgdfgsfdgfdfddgdsfgdfgfdfgdgddffgdfdgffgdgfdgfd");
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Role, admin.Role ?? ""),
+                 new Claim(ClaimTypes.Email, admin.email ?? "")
+        
+                };
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                NotBefore = DateTime.UtcNow,  
+                Expires = DateTime.UtcNow.AddSeconds(10),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
+        }
+
 
 
     }
