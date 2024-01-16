@@ -1,0 +1,57 @@
+mat-card {
+    max-width: 420px;
+    margin: 2em auto;
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  
+  .error-message {
+    color: red;
+    font-size: 14px; /* Adjust the font size as needed */
+    margin-top: 4px;
+    padding-bottom: 10px 
+
+  }
+
+  .forget {
+     min-width: 100px;
+   margin-left: auto;
+   text-decoration: none;
+   cursor: pointer;  
+  
+  }
+
+ a:hover {
+  text-decoration: none;
+ }
+ .icon-img {
+  width: 39px; 
+  height: 32px;
+ }
+
+.bordert {
+  border-top: 1px solid #aaa;
+  position: relative;
+}
+
+
+.bordert:after {
+  content: "or connect with";
+  position: absolute;
+  top:-13px;
+  left:33%;
+  background-color: #fff;
+}
+
+
+.my-4 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0rem !important;
+}
+
+
