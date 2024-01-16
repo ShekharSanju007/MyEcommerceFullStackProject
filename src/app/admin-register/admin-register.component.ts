@@ -66,7 +66,7 @@ registrationFormData(){
  
     this.dataService.RegisterData(this.registrationForm?.value).subscribe(
       (response) => {
-        console.log('Post success register:', response);
+        console.log('Post success registered:', response);
         this.registrationForm.reset();
         this.router.navigate(['/login']);
 
