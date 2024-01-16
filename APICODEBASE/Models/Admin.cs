@@ -24,10 +24,9 @@
 
         public int? productId { get; set; }
 
+        public string? Role { get; set; }
 
-
-
-
+        public string? JwtToken { get; set; }
 
     }
 }

@@ -1,0 +1,6 @@
+@APICODEBASE_HostAddress = http://localhost:5022
+
+GET {{APICODEBASE_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

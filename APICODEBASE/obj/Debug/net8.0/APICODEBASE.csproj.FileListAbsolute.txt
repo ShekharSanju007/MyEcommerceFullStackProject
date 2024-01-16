@@ -138,3 +138,6 @@ C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\
 C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\obj\Debug\net8.0\APICODEBASE.sourcelink.json
+C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\shekh\OneDrive\Desktop\FULLSTACK-ECOMMERCE\APICODEBASE\APICODEBASE\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
