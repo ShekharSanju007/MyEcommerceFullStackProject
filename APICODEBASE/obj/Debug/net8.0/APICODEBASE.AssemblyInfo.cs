@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APICODEBASE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c870c90fc7895273d60197746465497101385ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("APICODEBASE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APICODEBASE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
